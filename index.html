@@ -23,6 +23,10 @@
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             padding: 40px;
+            /* 小屏幕适配 */
+            @media (max-width: 600px) {
+                padding: 20px;
+            }
         }
         .lang-switch {
             text-align: right;
@@ -36,6 +40,13 @@
             cursor: pointer;
             font-size: 14px;
             color: #1a1a1a;
+            /* 去掉点击聚焦边框 */
+            outline: none;
+            transition: background 0.2s ease;
+        }
+        /* 按钮hover效果优化 */
+        .lang-btn:hover {
+            background: #dde6f0;
         }
         .lang-btn.active {
             background: #0056b3;
@@ -51,14 +62,16 @@
         .contact-info { background: #f8f9fa; padding: 20px; border-radius: 12px; margin: 20px 0; }
         .contact-info p { margin: 8px 0; }
         .footer { margin-top: 30px; font-size: 0.9rem; color: #999; text-align: center; }
-        [lang="en"] { display: none; }
+        /* 初始隐藏英文内容 */
+        #content-en { display: none; }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="lang-switch">
-            <button class="lang-btn active" onclick="switchLang('zh')">中文</button>
-            <button class="lang-btn" onclick="switchLang('en')">English</button>
+            <!-- 修复：传递this，代替event.target -->
+            <button class="lang-btn active" onclick="switchLang('zh', this)">中文</button>
+            <button class="lang-btn" onclick="switchLang('en', this)">English</button>
         </div>
 
         <div id="content-zh">
@@ -66,10 +79,10 @@
             <div class="subtitle">本科二年级 · 会计师方向</div>
             
             <div class="contact-info">
-                <p>📧 邮箱：2152014515@qq.com</p >
-                <p>🏫 学校/专业：华东政法大学 · 司法会计</p >
-                <p>🔬 研究兴趣：会计师、财务分析</p >
-                <p>💼 职业方向：会计师</p >
+                <p>📧 邮箱：2152014515@qq.com</p>
+                <p>🏫 学校/专业：华东政法大学 · 司法会计</p>
+                <p>🔬 研究兴趣：会计师、财务分析</p>
+                <p>💼 职业方向：会计师</p>
             </div>
 
             <h2>🛠️ 技能</h2>
@@ -104,10 +117,10 @@
             <div class="subtitle">Undergraduate Year 2 · Aspiring Accountant</div>
             
             <div class="contact-info">
-                <p>📧 Email：2152014515@qq.com</p >
-                <p>🏫 School/Major：East China University of Political Science and Law · Judicial Accounting</p >
-                <p>🔬 Interests：Accounting, Financial Analysis</p >
-                <p>💼 Career Goal：Accountant</p >
+                <p>📧 Email：2152014515@qq.com</p>
+                <p>🏫 School/Major：East China University of Political Science and Law · Judicial Accounting</p>
+                <p>🔬 Interests：Accounting, Financial Analysis</p>
+                <p>💼 Career Goal：Accountant</p>
             </div>
 
             <h2>🛠️ Skills</h2>
@@ -139,11 +152,14 @@
     </div>
 
     <script>
-        function switchLang(lang) {
+        // 修复：接收lang和btn参数，代替event
+        function switchLang(lang, btn) {
+            // 移除所有按钮的active样式
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            event.target.classList.add('active');
+            // 给当前点击的按钮添加active
+            btn.classList.add('active');
             
             if (lang === 'zh') {
                 document.getElementById('content-zh').style.display = 'block';
