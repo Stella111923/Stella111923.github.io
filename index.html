@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黄嘉语 · 个人主页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 40px;
+        }
+        .lang-switch {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        .lang-btn {
+            background: #eef2f6;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #1a1a1a;
+        }
+        .lang-btn.active {
+            background: #0056b3;
+            color: white;
+        }
+        h1 { color: #1a1a1a; margin-bottom: 5px; }
+        h2 { color: #0056b3; font-size: 1.3rem; margin: 25px 0 15px; border-bottom: 2px solid #eef2f6; padding-bottom: 8px; }
+        .subtitle { color: #666; margin-bottom: 15px; font-size: 1rem; }
+        .section { margin: 25px 0; }
+        .item { margin-bottom: 15px; }
+        .item-title { font-weight: 600; color: #1a1a1a; }
+        .item-meta { color: #666; font-size: 0.9rem; }
+        .contact-info { background: #f8f9fa; padding: 20px; border-radius: 12px; margin: 20px 0; }
+        .contact-info p { margin: 8px 0; }
+        .footer { margin-top: 30px; font-size: 0.9rem; color: #999; text-align: center; }
+        [lang="en"] { display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="lang-switch">
+            <button class="lang-btn active" onclick="switchLang('zh')">中文</button>
+            <button class="lang-btn" onclick="switchLang('en')">English</button>
+        </div>
+
+        <div id="content-zh">
+            <h1>黄嘉语</h1>
+            <div class="subtitle">本科二年级 · 会计师方向</div>
+            
+            <div class="contact-info">
+                <p>📧 邮箱：2152014515@qq.com</p >
+                <p>🏫 学校/专业：华东政法大学 · 司法会计</p >
+                <p>🔬 研究兴趣：会计师、财务分析</p >
+                <p>💼 职业方向：会计师</p >
+            </div>
+
+            <h2>🛠️ 技能</h2>
+            <div class="section">
+                <div class="item">
+                    <div class="item-title">Python · 数据分析</div>
+                    <div class="item-meta">Python基础、数据处理</div>
+                </div>
+                <div class="item">
+                    <div class="item-title">Excel · 财务应用</div>
+                    <div class="item-meta">Excel数据分析、表格处理、财务基础</div>
+                </div>
+            </div>
+
+            <h2>📖 教育经历</h2>
+            <div class="section">
+                <div class="item">
+                    <div class="item-title">华东政法大学 · 司法会计 本科</div>
+                    <div class="item-meta">2024 – 至今 | 本科二年级</div>
+                </div>
+                <div class="item">
+                    <div class="item-title">华东政法大学 · 会计学</div>
+                    <div class="item-meta">主修课程：会计学基础、财务管理、Python、Excel应用</div>
+                </div>
+            </div>
+
+            <div class="footer">最后更新：2026年3月</div>
+        </div>
+
+        <div id="content-en">
+            <h1>Jiayu Huang</h1>
+            <div class="subtitle">Undergraduate Year 2 · Aspiring Accountant</div>
+            
+            <div class="contact-info">
+                <p>📧 Email：2152014515@qq.com</p >
+                <p>🏫 School/Major：East China University of Political Science and Law · Judicial Accounting</p >
+                <p>🔬 Interests：Accounting, Financial Analysis</p >
+                <p>💼 Career Goal：Accountant</p >
+            </div>
+
+            <h2>🛠️ Skills</h2>
+            <div class="section">
+                <div class="item">
+                    <div class="item-title">Python · Data Analysis</div>
+                    <div class="item-meta">Python Basics, Data Processing</div>
+                </div>
+                <div class="item">
+                    <div class="item-title">Excel · Financial Applications</div>
+                    <div class="item-meta">Excel Analysis, Spreadsheets, Financial Fundamentals</div>
+                </div>
+            </div>
+
+            <h2>📖 Education</h2>
+            <div class="section">
+                <div class="item">
+                    <div class="item-title">East China University of Political Science and Law · Judicial Accounting</div>
+                    <div class="item-meta">2024 – Present | Undergraduate Year 2</div>
+                </div>
+                <div class="item">
+                    <div class="item-title">East China University of Political Science and Law · Accounting</div>
+                    <div class="item-meta">Courses：Accounting Fundamentals, Financial Management, Python, Excel</div>
+                </div>
+            </div>
+
+            <div class="footer">Last Updated：March 2026</div>
+        </div>
+    </div>
+
+    <script>
+        function switchLang(lang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            if (lang === 'zh') {
+                document.getElementById('content-zh').style.display = 'block';
+                document.getElementById('content-en').style.display = 'none';
+            } else {
+                document.getElementById('content-zh').style.display = 'none';
+                document.getElementById('content-en').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
